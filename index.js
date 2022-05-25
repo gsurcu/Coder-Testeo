@@ -34,10 +34,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Template engines
-app.set('views', './views');
-app.set('view engine', 'ejs');
-
 // Routes
 app.use(apisRoutes);
 
@@ -55,18 +51,18 @@ if (mode && cluster.isPrimary) {
   })
 } else {
   const PORT = process.env.PORT || 8081;
-  io.on('connection', async (socket) => {
-    emitir()
-    socket.on("incomingMessage", async (message) =>{
-      await chat.createItem(message)
-      emitir()
-    })
-  })
+  // io.on('connection', async (socket) => {
+  //   emitir()
+  //   socket.on("incomingMessage", async (message) =>{
+  //     await chat.createItem(message)
+  //     emitir()
+  //   })
+  // })
   
-  const emitir = async () => {
-    const lista = await chat.normalizar()
-    io.sockets.emit("chat", lista)
-  }
+  // const emitir = async () => {
+  //   const lista = await chat.normalizar()
+  //   io.sockets.emit("chat", lista)
+  // }
   const runningServer = server.listen(PORT, async () => {
   });
   
