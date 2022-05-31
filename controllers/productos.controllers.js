@@ -1,4 +1,4 @@
-const ProductsDao = require('../models/daos/Products.dao')
+const ProductsDao = require('../models/daos/products/Products.mongo.dao')
 
 class ProductsController {
   constructor() {
@@ -33,15 +33,11 @@ class ProductsController {
     const { id } = req.params;
     const item = req.body; console.log(item)
     
-    if ( Object.keys(item).length !== 0) {
-      const productoActualizado = await this.productsDao.updateItem( id, item );
-      if (productoActualizado) {
-        return res.status(200).send("Producto actualizado");
-      }
-      return res.status(404).send("Producto no encontrado");
+    const productoActualizado = await this.productsDao.updateItem( id, item );
+    if (productoActualizado) {
+      return res.status(200).send("Producto actualizado");
     }
-  
-    return res.status(400).send("No hay cambios");
+    return res.status(404).send("Producto no encontrado");
   };
 
   delete = async (req, res) => {

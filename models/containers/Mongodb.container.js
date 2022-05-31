@@ -14,7 +14,7 @@ const {
 
 class MongoDBContainer {
   static instancia;
-  constructor(collection, Schema, db = 'ecommerce') {
+  constructor(collection, db, Schema) {
     this.client = new MongoDBClient(DBConfig.mongo.uri(db));
     this.client.connect();
     this.projection = DBConfig.mongo.projection;

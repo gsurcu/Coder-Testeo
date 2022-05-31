@@ -1,7 +1,7 @@
 const { errorLog } = require('../../middlewares/logger');
 const MongoDBContainer = require('../containers/Mongodb.container');
 const CarritoSchema = require('../schemas/Cart.schema');
-const ProductsDao = require('./Products.dao');
+const ProductsDao = require('./products/Products.mongo.dao');
 
 const collection = "carritos";
 const Products = new ProductsDao();

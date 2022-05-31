@@ -5,9 +5,9 @@ const passport = require('./middlewares/passport');
 const cluster = require('cluster')
 const os = require('os')
 const http = require('http')
-const  ChatDao = require('./models/daos/Chat.dao')
+// const  ChatDao = require('./models/daos/Chat.dao')
 
-const chat = new ChatDao()
+// const chat = new ChatDao()
 const apisRoutes = require('./routers/app.routers');
 const { errorLog } = require('./middlewares/logger');
 const { DBConfig } = require('./config/dbConfig');
@@ -16,12 +16,12 @@ const mode = process.argv[3] == 'cluster';
 const app = express();
 
 const server = http.createServer(app) 
-const io = require('socket.io')(server)
+// const io = require('socket.io')(server)
 
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('./public'));
+app.use(express.static('public'));
 app.use(session({ 
   name: 'coder-session',
   secret: process.env.SESSION_SECRET,
