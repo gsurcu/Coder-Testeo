@@ -16,7 +16,7 @@ class ProductsMemDao extends MemoryContainer {
   
   async updateItem(id, item = {}) {
     try {
-      const indice = this.items.findIndex(prod => prod.id === +id);
+      const indice = this.items.findIndex(prod => prod.id === id);
       const updateItem = await this.getById(id);
       for (const key in item) {
         if (item[key] = '') {

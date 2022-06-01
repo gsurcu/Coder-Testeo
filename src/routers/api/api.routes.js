@@ -7,7 +7,7 @@ const router = express.Router();
 const productsRoutes = new ProductsRouter()
 //Routes
 router.use('/auth', authRoutes);
-router.use('/productos', productsRoutes.start());
+router.use('/products', productsRoutes.start());
 router.use('/carrito', CartsRouter.start());
 
 module.exports = router;

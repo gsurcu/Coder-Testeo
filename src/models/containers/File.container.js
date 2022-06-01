@@ -25,7 +25,8 @@ class FileContainer {
         await this.createItem([]);
       }
     } catch (error) {
-
+      const newError = formatErrorObject(INTERNAL_ERROR.tag, error.message);
+      errorLog(JSON.stringify(newError));
     }
   }
 
@@ -67,24 +68,10 @@ class FileContainer {
 
   async createItem(resourceItem) {
     try {
-      const newItem = await fs.promises.writeFile(this.fileName, JSON.stringify(resourceItem,null, 2), 'utf-8')
+      const newItem = await fs.promises.writeFile(this.fileName, JSON.stringify(resourceItem, null, 2), 'utf-8')
       return newItem;
     }
     catch (error) {
-      const newError = formatErrorObject(INTERNAL_ERROR.tag, error.message);
-      errorLog(JSON.stringify(newError));
-    }
-  }
-
-  async deleteById(id){
-    try {
-      const docs = await this.getAll();
-      if (docs) {
-        const newDocs = docs.filter(item => item._id !== id);
-        return await this.createItem(newDocs);
-      }
-      return false;
-    } catch (error) {
       const newError = formatErrorObject(INTERNAL_ERROR.tag, error.message);
       errorLog(JSON.stringify(newError));
     }

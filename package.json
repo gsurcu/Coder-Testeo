@@ -2,28 +2,21 @@
   "name": "demo_pb_42",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "dependencies": {
     "axios": "^0.27.2",
     "bcrypt": "5.0.1",
-    "compression": "1.7.4",
     "connect-mongo": "4.6.0",
     "express": "^4.17.3",
     "express-session": "1.17.2",
     "moment": "2.29.1",
     "mongoose": "^6.2.4",
-    "multer": "1.4.4",
-    "nodemailer": "6.7.3",
-    "normalizr": "3.6.2",
-    "passport": "0.5.2",
-    "passport-local": "1.0.0",
-    "socket.io": "^4.4.1",
-    "twilio": "3.76.1",
     "winston": "3.7.2"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/index.test.js",
+    "start": "node .",
+    "dev": ""
   },
   "repository": {
     "type": "git",
@@ -35,5 +28,9 @@
   "bugs": {
     "url": "https://github.com/gsurcu/Coder-Testeo/issues"
   },
-  "homepage": "https://github.com/gsurcu/Coder-Testeo#readme"
+  "homepage": "https://github.com/gsurcu/Coder-Testeo#readme",
+  "devDependencies": {
+    "dotenv": "^16.0.1",
+    "mocha": "^10.0.0"
+  }
 }
