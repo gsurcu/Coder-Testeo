@@ -1,14 +1,12 @@
 const { errorLog } = require('../../middlewares/logger');
 const MongoDBContainer = require('../containers/Mongodb.container');
 const CarritoSchema = require('../schemas/Cart.schema');
-const ProductsDao = require('./products/Products.mongo.dao');
+// const ProductsDao = require('./products/Products.mongo.dao');
 
-const collection = "carritos";
-const Products = new ProductsDao();
 class CarritosDao extends MongoDBContainer {
   static instance;
-  constructor() {
-    super(collection, CarritoSchema);
+  constructor(collection, db = 'ecommerce') {
+    super(collection, db, CarritoSchema);
     if (!CarritosDao.instance) {
       CarritosDao.instance = this;
       return this

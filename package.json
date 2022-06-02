@@ -14,8 +14,9 @@
     "winston": "3.7.2"
   },
   "scripts": {
-    "test": "node test/index.test.js",
-    "start": "node .",
+    "test": "mocha test/index.test.js",
+    "start": "pm2 start . --name=Server --watch -- 8080",
+    "client": "node client/client.js",
     "dev": ""
   },
   "repository": {
@@ -30,7 +31,10 @@
   },
   "homepage": "https://github.com/gsurcu/Coder-Testeo#readme",
   "devDependencies": {
+    "@faker-js/faker": "^7.1.0",
+    "chai": "^4.3.6",
     "dotenv": "^16.0.1",
-    "mocha": "^10.0.0"
+    "mocha": "^10.0.0",
+    "supertest": "^6.2.3"
   }
 }

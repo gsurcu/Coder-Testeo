@@ -13,6 +13,14 @@ class ProductsMongoDao extends MongoDBContainer {
       return ProductsMongoDao.instance;
     }
   }
+
+  async getItem(id) {
+    if(id) {
+      return await this.getById(id)
+    }
+    return await this.getAll()
+  }
+
   async saveItem(item) {
     try {
       const newItem = {...item, timeStamp: Date.now()}

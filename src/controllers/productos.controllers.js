@@ -1,10 +1,8 @@
-const config = require("../config");
-const ProductsFactoryDao = require("../models/daos/Products.factory.dao");
+const ApiProducts = require("../api/products");
 
-// const ProductsDao = require('../models/daos/products/Products.mongo.dao')
 class ProductsController {
   constructor() {
-    this.productsDao = ProductsFactoryDao.get(config.TIPO_PERSISTENCIA)
+    this.productsDao = new ApiProducts()
     
   }
 
@@ -13,15 +11,13 @@ class ProductsController {
       const {title, price, imgUrl, code, description, stock} = req.body;
       
       if (title && price && imgUrl && code && description && stock) {
-        const nuevoProducto = await this.productsDao.saveItem({title, price, imgUrl, code, description, stock });
+        const nuevoProducto =   await this.productsDao.saveProduct({title, price, imgUrl, code, description, stock });
         if (nuevoProducto) {
           return res.status(200).json(nuevoProducto);
         }
         return res.status(404).send("No se pudo guardar el producto")
       }
-    
       return res.status(400).send("Faltan datos");
-      
     } catch (error) {
       
     }
@@ -30,13 +26,8 @@ class ProductsController {
   list = async (req, res) => {
     try {
       const { id } = req.params;
-      if (id) {
-        const producto = await this.productsDao.getById(id);
-        return res.status(200).json(producto);
-      }
-      const producto = await this.productsDao.getAll(filter = {});
+      const producto = await this.productsDao.getProducts(id);
       return res.status(200).json(producto);
-      
     } catch (error) {
       
     }
@@ -45,14 +36,13 @@ class ProductsController {
   update = async (req, res) => {
     try {
       const { id } = req.params;
-      const item = req.body; console.log(item)
+      const item = req.body;
       
-      const productoActualizado = await this.productsDao.updateItem( id, item );
+      const productoActualizado = await this.productsDao.updateProduct( id, item );
       if (productoActualizado) {
         return res.status(200).json(productoActualizado);
       }
-      return res.status(404).send("Producto no encontrado");
-      
+      return res.status(404).send("Producto no encontrado");      
     } catch (error) {
       
     }
@@ -61,15 +51,12 @@ class ProductsController {
   delete = async (req, res) => {
     try {
       const { id } = req.params;
-      
-      if (id) {
-        const productoEliminado = await this.productsDao.delItem(id);
-        if (productoEliminado) {
-          return res.status(200).json(productoEliminado);
-        }
-        return res.status(404).json({mensaje: "Producto no encontrado"});
+
+      const productoEliminado = await this.productsDao.deleteProduct(id);
+      if (productoEliminado) {
+        return res.status(200).json(productoEliminado);
       }
-      
+      return res.status(404).json({mensaje: "Producto no encontrado"});
     } catch (error) {
       
     }

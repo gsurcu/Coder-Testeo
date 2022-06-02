@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Mesa chica",
+    "price": 1200,
+    "imgUrl": "gsdfsdf",
+    "code": "123123",
+    "description": "Dimesiones: 40cmx65cm, Altura: 40cm",
+    "stock": 10
+  },
+  {
+    "title": "Mesa grande",
+    "price": 4500,
+    "imgUrl": "fvdsfes",
+    "code": "123456",
+    "description": "Dimesiones: 100cmx65cm, Altura: 100cm",
+    "stock": 12
+  }
+]

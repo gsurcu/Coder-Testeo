@@ -6,6 +6,13 @@ class ProductsFileDao extends FileContainer {
     super(fileName)
   }
 
+  async getItem(id) {
+    if(id) {
+      return await this.getById(id)
+    }
+    return await this.getAll()
+  }
+
   async saveItem(item) {
     try {
       const items = await this.getAll()

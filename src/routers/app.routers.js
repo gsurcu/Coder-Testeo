@@ -1,12 +1,21 @@
 const express = require('express');
-const apiRoutes = require('./api/api.routes');
+const ApiRouter = require('./api/api.routes');
 const { warnLog, infoLog } = require('../middlewares/logger');
 const router = express.Router();
 
 
 //Routes
-router.use(infoLog)
-router.use('/api', apiRoutes);
-router.use('/*', warnLog);
+class Router {
+  constructor() {
+    this.apiRoutes = new ApiRouter()
+  }
 
-module.exports = router;
+  start(){
+    router.use(infoLog);
+    router.use('/api', this.apiRoutes.start());
+    router.use('/*', warnLog);
+    return router;
+  }
+}
+
+module.exports = Router;

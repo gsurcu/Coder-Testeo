@@ -15,7 +15,7 @@ const {
 class MongoDBContainer {
   static instancia;
   constructor(collection, db, Schema) {
-    this.client = new MongoDBClient(DBConfig.mongo.uri(db));
+    this.client = new MongoDBClient(DBConfig.mongo.DB_URI(db));
     this.client.connect();
     this.projection = DBConfig.mongo.projection;
     this.model = mongoose.model(collection, Schema);

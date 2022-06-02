@@ -1,0 +1,3 @@
+{"level":"error","message":"{\"error\":\"[INTERNAL ERROR]\",\"message\":\"Unexpected end of JSON input\"}","timestamp":"2022-06-02T16:09:28.199Z"}
+{"level":"error","message":"{\"error\":\"[INTERNAL ERROR]\",\"message\":\"Unexpected end of JSON input\"}","timestamp":"2022-06-02T16:12:45.920Z"}
+{"level":"error","message":"{\"error\":\"[NOT FOUND]\",\"message\":\"Resource with id undefined does not exist in our records\"}","timestamp":"2022-06-02T17:55:17.202Z"}

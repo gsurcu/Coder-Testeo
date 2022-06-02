@@ -14,7 +14,7 @@ class FileContainer {
   static instancia;
   constructor(fileName) {
     this.fileName = fileName;
-    this.open()
+    this.open();
   }
 
   async open(){
@@ -68,8 +68,8 @@ class FileContainer {
 
   async createItem(resourceItem) {
     try {
-      const newItem = await fs.promises.writeFile(this.fileName, JSON.stringify(resourceItem, null, 2), 'utf-8')
-      return newItem;
+      await fs.promises.writeFile(this.fileName, JSON.stringify(resourceItem, null, 2), 'utf-8');;
+      return resourceItem;
     }
     catch (error) {
       const newError = formatErrorObject(INTERNAL_ERROR.tag, error.message);
@@ -79,8 +79,7 @@ class FileContainer {
 
   async deleteAll() {
     try {
-      const delItem = await fs.promises.unlink(this.nombre);
-      return delItem
+      return await fs.promises.unlink(this.fileName);
     } catch (error) {
       const newError = formatErrorObject(INTERNAL_ERROR.tag, error.message);
       errorLog(JSON.stringify(newError));
